@@ -1,0 +1,15 @@
+import { CONFIG } from 'src/config-global';
+
+import { LeasesView } from 'src/sections/leases/view';
+
+// ----------------------------------------------------------------------
+
+export default function Page() {
+  return (
+    <>
+      <title>{`Leases - ${CONFIG.appName}`}</title>
+
+      <LeasesView />
+    </>
+  );
+}

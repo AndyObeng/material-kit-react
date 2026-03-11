@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
-import { _users } from 'src/_mock';
+
 import { DashboardContent } from 'src/layouts/dashboard';
 
 import { Iconify } from 'src/components/iconify';
@@ -23,16 +23,133 @@ import { UserTableToolbar } from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
 import type { UserProps } from '../user-table-row';
+import secureLocalStorage from 'react-secure-storage';
+import axios from 'axios';
+import ProgressDialog from 'src/components/ProgressDialog';
 
 // ----------------------------------------------------------------------
 
 export function UserView() {
+  const [isLoading, setLoading] = useState(false);
+  const [productslist, setproductslist] = useState([]);
+
+  const  getstate = async() =>{
+      setLoading(true)
+try {   
+  
+        const session =  secureLocalStorage.getItem("logincredentials")
+        console.log(session)
+        fetchmydata((JSON.parse(session)).userid,(JSON.parse(session)).access_token);
+        // .then(result=>{
+          
+        //      if (result !== undefined) {
+        //       console.log(result)
+        //     //console.log((JSON.parse(session)).ispassed)
+        //     let state = null;
+        //     state = (JSON.parse(result)).firstname
+        //     if(state)
+        //     {
+        //       console.log(state)
+              
+        //       // setfirstname((JSON.parse(result)).firstname)
+        //       // setlastname((JSON.parse(result)).lastname)
+        //       // setothername((JSON.parse(result)).othername)
+        //       // settitle((JSON.parse(result)).title)
+        //       // setuserid((JSON.parse(result)).userid)
+        //       // setapi_token((JSON.parse(result)).api_token)
+        //       //fetchmydata((JSON.parse(result)).userid,(JSON.parse(result)).api_token);
+        //       //pieref.current.data = pieData
+        //      // console.log(pieData)
+        //      // this.props.navigation.navigate("AnimTab3",{user:state})
+        //      // navigation.navigate("VerificationScreen")
+        //     }
+        //     else
+        //     {
+        //       //navigation.navigate("EditProfile",{user:state})
+        //     }
+
+        // }
+        // });
+        // //console.log(session)
+     
+    } catch (error) {
+        console.log(error)
+    }
+     }
+
+      const  fetchmydata = async (userid,api_token) => {
+   
+   
+ 
+       const URL = "https://api.cropestate.com/api/users/all";
+    
+    
+
+  //  this.setDisabled(true)
+	let payload = {};
+  let header = { headers: {
+     'Authorization': `Bearer ${api_token}`,
+    //'content-type': 'multipart/form-data'
+  }
+}
+  await axios.get(URL, payload,header )
+    .catch(function (error) {
+      //console.log(error)
+    if (error.response) {
+       // setretry(true)
+        setLoading(false)
+      // Request made and server responded
+      console.log(error.response);
+    // showToast('error','Network error',"Please try again")
+     return;
+   
+       
+        
+    } else if (error.request) {
+      //setretry(true)
+        setLoading(false)
+      // The request was made but no response was received
+    //  console.log(error.request);
+     // this.showToast('danger','Server error',error.request)
+     //  showToast('error','Server error',"Please try again")
+    
+    } else {
+      //setretry(true)
+        setLoading(false)
+     
+
+    }
+
+  })
+.then(async result => {
+      setLoading(false) 
+     
+       // console.log(result.data)
+       if(result!==undefined)
+       {
+        setproductslist(result.data)
+       //  setretry(false)
+      }
+      
+        
+        
+    })
+  .finally(()=>{ 
+  });
+
+ 
+    }   
   const table = useTable();
+
+    useEffect(() => {
+    getstate();
+    console.log("state")
+  }, []);
 
   const [filterName, setFilterName] = useState('');
 
   const dataFiltered: UserProps[] = applyFilter({
-    inputData: _users,
+    inputData: productslist,
     comparator: getComparator(table.order, table.orderBy),
     filterName,
   });
@@ -59,7 +176,7 @@ export function UserView() {
           New user
         </Button>
       </Box>
-
+<ProgressDialog open={isLoading} message="Processing, please wait..." />
       <Card>
         <UserTableToolbar
           numSelected={table.selected.length}
@@ -76,20 +193,20 @@ export function UserView() {
               <UserTableHead
                 order={table.order}
                 orderBy={table.orderBy}
-                rowCount={_users.length}
+                rowCount={productslist.length}
                 numSelected={table.selected.length}
                 onSort={table.onSort}
                 onSelectAllRows={(checked) =>
                   table.onSelectAllRows(
                     checked,
-                    _users.map((user) => user.id)
+                    productslist.map((user) => user.id)
                   )
                 }
                 headLabel={[
                   { id: 'name', label: 'Name' },
-                  { id: 'company', label: 'Company' },
-                  { id: 'role', label: 'Role' },
-                  { id: 'isVerified', label: 'Verified', align: 'center' },
+                  { id: 'company', label: 'Username' },
+                  { id: 'role', label: 'IP' },
+                  { id: 'isVerified', label: 'Last Login', align: 'center' },
                   { id: 'status', label: 'Status' },
                   { id: '' },
                 ]}
@@ -104,14 +221,14 @@ export function UserView() {
                     <UserTableRow
                       key={row.id}
                       row={row}
-                      selected={table.selected.includes(row.id)}
-                      onSelectRow={() => table.onSelectRow(row.id)}
+                      selected={table.selected.includes(String(row.id))}
+                      onSelectRow={() => table.onSelectRow(String(row.id))}
                     />
                   ))}
 
                 <TableEmptyRows
                   height={68}
-                  emptyRows={emptyRows(table.page, table.rowsPerPage, _users.length)}
+                  emptyRows={emptyRows(table.page, table.rowsPerPage, productslist.length)}
                 />
 
                 {notFound && <TableNoData searchQuery={filterName} />}
@@ -123,7 +240,7 @@ export function UserView() {
         <TablePagination
           component="div"
           page={table.page}
-          count={_users.length}
+          count={productslist.length}
           rowsPerPage={table.rowsPerPage}
           onPageChange={table.onChangePage}
           rowsPerPageOptions={[5, 10, 25]}

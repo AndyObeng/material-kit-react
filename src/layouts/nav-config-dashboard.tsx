@@ -1,5 +1,6 @@
 import { Label } from 'src/components/label';
 import { SvgColor } from 'src/components/svg-color';
+import { Icon } from '@iconify/react';
 
 // ----------------------------------------------------------------------
 
@@ -19,14 +20,14 @@ export const navData = [
     icon: icon('ic-analytics'),
   },
   {
-    title: 'User',
+    title: 'Users',
     path: '/user',
-    icon: icon('ic-user'),
+    icon: <Icon icon="mage:users" width="24" height="24" />,
   },
   {
-    title: 'Product',
-    path: '/products',
-    icon: icon('ic-cart'),
+    title: 'Crops',
+    path: '/crops',
+    icon: <Icon icon="ph:farm-thin" width="24" height="24" />,
     info: (
       <Label color="error" variant="inverted">
         +3
@@ -34,18 +35,51 @@ export const navData = [
     ),
   },
   {
-    title: 'Blog',
+    title: 'Payments',
     path: '/blog',
-    icon: icon('ic-blog'),
+    icon: <Icon icon="streamline-freehand:cash-payment-bag-1" width="24" height="24" />,
   },
+
+   {
+    title: 'Leases',
+    path: '/leases',
+    icon: <Icon icon="streamline:investment-selection" width="24" height="24" />,
+  },
+
   {
-    title: 'Sign in',
+    title: 'Insurance',
+    path: '/insurance',
+    icon: <Icon icon="streamline-plump:insurance-hand-remix" width="24" height="24" />,
+  },
+ {
+    title: 'Chats',
+    path: '/chats',
+    icon: <Icon icon="humbleicons:chats" width="24" height="24" />,
+  },
+   {
+    title: 'Notifications',
+    path: '/notifications',
+    icon: <Icon icon="ion:notifications-circle-sharp" width="24" height="24" />,
+  },
+
+     {
+    title: 'Currency Exchange',
+    path: '/currency-exchange',
+    icon: <Icon icon="bi:currency-exchange" width="24" height="24" />,
+  },
+
+
+  
+  {
+    title: 'Settings',
+    path: '/settings',
+    icon: <Icon icon="material-symbols-light:settings-outline" width="24" height="24" />,
+  },
+
+     {
+    title: 'Logout',
     path: '/sign-in',
-    icon: icon('ic-lock'),
+    icon: <Icon icon="uiw:logout" width="20" height="20" />,
   },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic-disabled'),
-  },
+
 ];

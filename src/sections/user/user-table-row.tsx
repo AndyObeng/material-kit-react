@@ -16,13 +16,46 @@ import { Iconify } from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 export type UserProps = {
-  id: string;
-  name: string;
+  id: number;
+  last_login: string;
+  is_superuser: boolean;
+  userid: string;
+  username: string;
+  password: string;
+  refreshToken: string;
+  fcmToken: string;
   role: string;
-  status: string;
-  company: string;
-  avatarUrl: string;
-  isVerified: boolean;
+  updated_at: string;
+  created_at: string;
+  groups: string;
+  user_permissions: string;
+  dateofbirth: string,
+  gender: string,
+  auxilliarycontact: string,
+  primarycontact: string,
+  email: string,
+  email_verified_at: string | null,
+  firstname: string,
+  lastname: string,
+  othername: string,
+  profilepicurl: string,
+  email_verified: boolean,
+  active: boolean,
+  connected: boolean,
+  apphash: string,
+  last_login_ip: string,
+  title: string,
+  nextofkin: string,
+  nextofkincontact: string,
+  guid: string,
+  otp: string,
+  idnumber: string,
+        idtype: string,
+        emailnotify: boolean,
+        smsnotify: boolean,
+        whatsappnotify: boolean,
+        social_login_providerid: number,
+       
 };
 
 type UserTableRowProps = {
@@ -33,7 +66,7 @@ type UserTableRowProps = {
 
 export function UserTableRow({ row, selected, onSelectRow }: UserTableRowProps) {
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
-
+//console.log(row)
   const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     setOpenPopover(event.currentTarget);
   }, []);
@@ -43,6 +76,7 @@ export function UserTableRow({ row, selected, onSelectRow }: UserTableRowProps) 
   }, []);
 
   return (
+    
     <>
       <TableRow hover tabIndex={-1} role="checkbox" selected={selected}>
         <TableCell padding="checkbox">
@@ -57,26 +91,28 @@ export function UserTableRow({ row, selected, onSelectRow }: UserTableRowProps) 
               alignItems: 'center',
             }}
           >
-            <Avatar alt={row.name} src={row.avatarUrl} />
-            {row.name}
+            <Avatar alt={row.firstname} src={row.profilepicurl} />
+            {row.firstname} {row.lastname}
           </Box>
         </TableCell>
 
-        <TableCell>{row.company}</TableCell>
+        <TableCell>{row.user.username}</TableCell>
 
-        <TableCell>{row.role}</TableCell>
+        <TableCell>{row.last_login_ip}</TableCell>
+            
+            <TableCell>{row.user.last_login}</TableCell>
 
         <TableCell align="center">
-          {row.isVerified ? (
+          {row.active ? (
             <Iconify width={22} icon="solar:check-circle-bold" sx={{ color: 'success.main' }} />
           ) : (
             '-'
           )}
         </TableCell>
 
-        <TableCell>
-          <Label color={(row.status === 'banned' && 'error') || 'success'}>{row.status}</Label>
-        </TableCell>
+      
+           
+        
 
         <TableCell align="right">
           <IconButton onClick={handleOpenPopover}>
