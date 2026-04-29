@@ -16,20 +16,20 @@ import { Iconify } from 'src/components/iconify';
 import { Scrollbar } from 'src/components/scrollbar';
 
 import { TableNoData } from '../table-no-data';
-import { CurrencyTableRow } from '../currency-table-row';
-import { CurrencyTableHead } from '../currency-table-head';
+import { MomoTableRow } from '../momo-table-row';
+import { MomoTableHead } from '../momo-table-head';
 import { TableEmptyRows } from '../table-empty-rows';
-import { CurrencyTableToolbar } from '../currency-table-toolbar';
+import { MomoTableToolbar } from '../momo-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
-import type { CurrencyProps } from '../currency-table-row';
+import type { MomoProps } from '../momo-table-row';
 import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 import ProgressDialog from 'src/components/ProgressDialog';
 
 // ----------------------------------------------------------------------
 
-export function CurrencyView() {
+export function MomoView() {
   const [isLoading, setLoading] = useState(false);
   const [productslist, setproductslist] = useState([]);
 
@@ -79,9 +79,9 @@ try {
 
       const  fetchmydata = async (userid,api_token) => {
    
-   axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
  
-       const URL = "https://api.cropestate.com/api/currency";
+       const URL = "https://api.cropestate.com/api/momo";
     
     
 
@@ -92,7 +92,7 @@ try {
     //'content-type': 'multipart/form-data'
   }
 }
-  await axios.get(URL, )
+  await axios.get(URL, payload,header )
     .catch(function (error) {
       //console.log(error)
     if (error.response) {
@@ -148,7 +148,7 @@ try {
 
   const [filterName, setFilterName] = useState('');
 
-  const dataFiltered: CurrencyProps[] = applyFilter({
+  const dataFiltered: MomoProps[] = applyFilter({
     inputData: productslist,
     comparator: getComparator(table.order, table.orderBy),
     filterName,
@@ -166,19 +166,19 @@ try {
         }}
       >
         <Typography variant="h4" sx={{ flexGrow: 1 }}>
-          Currencies
+          Momo
         </Typography>
         <Button
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="mingcute:add-line" />}
         >
-          New Currency
+          New Momo
         </Button>
       </Box>
 <ProgressDialog open={isLoading} message="Processing, please wait..." />
       <Card>
-        <CurrencyTableToolbar
+        <MomoTableToolbar
           numSelected={table.selected.length}
           filterName={filterName}
           onFilterName={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -190,7 +190,7 @@ try {
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
-              <CurrencyTableHead
+              <MomoTableHead
                 order={table.order}
                 orderBy={table.orderBy}
                 rowCount={productslist.length}
@@ -203,12 +203,12 @@ try {
                   )
                 }
                 headLabel={[
-                  { id: 'code', label: 'code' },
                   { id: 'name', label: 'Name' },
-                  { id: 'rate', label: 'Rate' },
-                  { id: 'symbol', label: 'Symbol', align: 'center' },
-                  { id: 'update', label: 'Last update' },
-                  
+                  { id: 'company', label: 'Acre price' },
+                  { id: 'role', label: 'Plot price' },
+                  { id: 'isVerified', label: 'Tree price', align: 'center' },
+                  { id: 'status', label: 'ROI' },
+                  { id: 'quantityavailable', label: 'Quantity ' },
                   { id: '' },
                 ]}
               />
@@ -219,7 +219,7 @@ try {
                     table.page * table.rowsPerPage + table.rowsPerPage
                   )
                   .map((row) => (
-                    <CurrencyTableRow
+                    <MomoTableRow
                       key={row.id}
                       row={row}
                       selected={table.selected.includes(String(row.id))}

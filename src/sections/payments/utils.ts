@@ -1,4 +1,4 @@
-import type { CropProps } from './crop-table-row';
+import type { CropProps } from './payment-table-row';
 
 // ----------------------------------------------------------------------
 

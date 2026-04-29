@@ -1,1 +1,1 @@
-export * from './crop-view';
+export * from './settings-view';

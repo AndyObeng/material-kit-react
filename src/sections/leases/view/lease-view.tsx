@@ -16,20 +16,20 @@ import { Iconify } from 'src/components/iconify';
 import { Scrollbar } from 'src/components/scrollbar';
 
 import { TableNoData } from '../table-no-data';
-import { CropTableRow } from '../crop-table-row';
-import { CropTableHead } from '../crop-table-head';
+import { LeaseTableRow } from '../lease-table-row';
+import { LeaseTableHead } from '../lease-table-head';
 import { TableEmptyRows } from '../table-empty-rows';
-import { CropTableToolbar } from '../crop-table-toolbar';
+import { LeaseTableToolbar } from '../lease-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
-import type { CropProps } from '../crop-table-row';
+import type { LeaseProps } from '../lease-table-row';
 import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 import ProgressDialog from 'src/components/ProgressDialog';
 
 // ----------------------------------------------------------------------
 
-export function CropView() {
+export function LeaseView() {
   const [isLoading, setLoading] = useState(false);
   const [productslist, setproductslist] = useState([]);
 
@@ -79,9 +79,9 @@ try {
 
       const  fetchmydata = async (userid,api_token) => {
    
-   
+   axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
  
-       const URL = "https://api.cropestate.com/api/crops";
+       const URL = "https://api.cropestate.com/api/leases";
     
     
 
@@ -148,7 +148,7 @@ try {
 
   const [filterName, setFilterName] = useState('');
 
-  const dataFiltered: CropProps[] = applyFilter({
+  const dataFiltered: LeaseProps[] = applyFilter({
     inputData: productslist,
     comparator: getComparator(table.order, table.orderBy),
     filterName,
@@ -166,19 +166,19 @@ try {
         }}
       >
         <Typography variant="h4" sx={{ flexGrow: 1 }}>
-          Crops
+          Leases
         </Typography>
         <Button
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="mingcute:add-line" />}
         >
-          New crop
+          New Lease
         </Button>
       </Box>
 <ProgressDialog open={isLoading} message="Processing, please wait..." />
       <Card>
-        <CropTableToolbar
+        <LeaseTableToolbar
           numSelected={table.selected.length}
           filterName={filterName}
           onFilterName={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -190,7 +190,7 @@ try {
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
-              <CropTableHead
+              <LeaseTableHead
                 order={table.order}
                 orderBy={table.orderBy}
                 rowCount={productslist.length}
@@ -219,7 +219,7 @@ try {
                     table.page * table.rowsPerPage + table.rowsPerPage
                   )
                   .map((row) => (
-                    <CropTableRow
+                    <LeaseTableRow
                       key={row.id}
                       row={row}
                       selected={table.selected.includes(String(row.id))}

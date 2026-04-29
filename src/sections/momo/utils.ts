@@ -1,4 +1,4 @@
-import type { CropProps } from './settings-table-row';
+import type { CropProps } from './momo-table-row';
 
 // ----------------------------------------------------------------------
 

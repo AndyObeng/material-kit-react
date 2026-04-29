@@ -9,13 +9,13 @@ import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-type CropTableToolbarProps = {
+type MomoTableToolbarProps = {
   numSelected: number;
   filterName: string;
   onFilterName: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export function CropTableToolbar({ numSelected, filterName, onFilterName }: CropTableToolbarProps) {
+export function MomoTableToolbar({ numSelected, filterName, onFilterName }: MomoTableToolbarProps) {
   return (
     <Toolbar
       sx={{
@@ -38,7 +38,7 @@ export function CropTableToolbar({ numSelected, filterName, onFilterName }: Crop
           fullWidth
           value={filterName}
           onChange={onFilterName}
-          placeholder="Search Crop..."
+          placeholder="Search Momo..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify width={20} icon="eva:search-fill" sx={{ color: 'text.disabled' }} />

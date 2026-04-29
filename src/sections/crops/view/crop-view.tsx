@@ -80,7 +80,7 @@ try {
       const  fetchmydata = async (userid,api_token) => {
    
    
- 
+ axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
        const URL = "https://api.cropestate.com/api/crops";
     
     
@@ -92,7 +92,7 @@ try {
     //'content-type': 'multipart/form-data'
   }
 }
-  await axios.get(URL, payload,header )
+  await axios.get(URL, )
     .catch(function (error) {
       //console.log(error)
     if (error.response) {

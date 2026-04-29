@@ -15,38 +15,25 @@ import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export type CropProps = {
+export type MomoProps = {
   id: number;
-  cropid: string;
-  imageurl: string;
-  iconurl: string;
-  title: string;
-  description: string;
-  category: string;
-  acreprice: number;
-  plotprice: number;
-  treeprice: number;
-  numberoftrees: number;
-  quantityavailable: number;
-  gestationperiod: string;
-  maturationperiod: string,
-  roi: string,
-  location: string,
-  status: string,
-  created_by: string,
-  updated_by: string | null,
+  setting_key: string;
+  setting_value: string;
+  
   created_at: string,
   updated_at: string,
+
+
        
 };
 
-type CropTableRowProps = {
-  row: CropProps;
+type MomoTableRowProps = {
+  row: MomoProps;
   selected: boolean;
   onSelectRow: () => void;
 };
 
-export function CropTableRow({ row, selected, onSelectRow }: CropTableRowProps) {
+export function MomoTableRow({ row, selected, onSelectRow }: MomoTableRowProps) {
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
 //console.log(row)
   const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {

@@ -80,8 +80,8 @@ try {
       const  fetchmydata = async (userid,api_token) => {
    
    
- 
-       const URL = "https://api.Notificationestate.com/api/Notifications";
+ axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
+       const URL = "https://api.cropestate.com/api/notifications";
     
     
 
@@ -92,7 +92,7 @@ try {
     //'content-type': 'multipart/form-data'
   }
 }
-  await axios.get(URL, payload,header )
+  await axios.get(URL, )
     .catch(function (error) {
       //console.log(error)
     if (error.response) {

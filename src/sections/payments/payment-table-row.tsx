@@ -15,30 +15,35 @@ import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export type NotificationProps = {
+export type PaymentProps = {
   id: number;
   user: string;
-  title: string;
-  message: string;
-  priority: string;
-  message_type: string;
-  is_read: string;
+  leaseagreement: string;
+  payment_intent_id: string;
+  amount: string;
+  currency: string;
+  status: string;
+  client_secret: number;
+  paymentmethod: number;
+  fulldesctription: number;
+  paymentimgurl: number;
+  payment_method_configuration_details_id: number;
  
   created_at: string,
+  updated_at: string,
 
 
-
-
+  
        
 };
 
-type NotificationTableRowProps = {
-  row: NotificationProps;
+type PaymentTableRowProps = {
+  row: PaymentProps;
   selected: boolean;
   onSelectRow: () => void;
 };
 
-export function NotificationTableRow({ row, selected, onSelectRow }: NotificationTableRowProps) {
+export function PaymentTableRow({ row, selected, onSelectRow }: PaymentTableRowProps) {
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
 //console.log(row)
   const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,15 +1,15 @@
 import { CONFIG } from 'src/config-global';
 
-import { CurrencyView } from 'src/sections/currency/view';
+import { NotificationView } from 'src/sections/notifications/view';
 
 // ----------------------------------------------------------------------
 
 export default function Page() {
   return (
     <>
-      <title>{`Currency - ${CONFIG.appName}`}</title>
+      <title>{`Notifications - ${CONFIG.appName}`}</title>
 
-      <CurrencyView />
+      <NotificationView />
     </>
   );
 }

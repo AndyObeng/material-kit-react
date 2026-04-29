@@ -1,15 +1,15 @@
 import { CONFIG } from 'src/config-global';
 
-import { SettingsView } from 'src/sections/settings/view';
+import { PaymentView } from 'src/sections/payments/view';
 
 // ----------------------------------------------------------------------
 
 export default function Page() {
   return (
     <>
-      <title>{`Settings - ${CONFIG.appName}`}</title>
+      <title>{`Payments - ${CONFIG.appName}`}</title>
 
-      <SettingsView />
+      <PaymentView />
     </>
   );
 }

@@ -15,38 +15,32 @@ import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export type CropProps = {
+export type InsuranceProps = {
   id: number;
-  cropid: string;
-  imageurl: string;
-  iconurl: string;
-  title: string;
-  description: string;
-  category: string;
-  acreprice: number;
-  plotprice: number;
-  treeprice: number;
-  numberoftrees: number;
-  quantityavailable: number;
-  gestationperiod: string;
-  maturationperiod: string,
-  roi: string,
-  location: string,
+  user: string;
+  leaseagreement: string;
+  policy_number: string;
+  provider: string;
+  coverage_details: string;
+  start_date: string;
+  end_date: number;
+ 
   status: string,
-  created_by: string,
-  updated_by: string | null,
+
   created_at: string,
   updated_at: string,
+
+
        
 };
 
-type CropTableRowProps = {
-  row: CropProps;
+type InsuranceTableRowProps = {
+  row: InsuranceProps;
   selected: boolean;
   onSelectRow: () => void;
 };
 
-export function CropTableRow({ row, selected, onSelectRow }: CropTableRowProps) {
+export function InsuranceTableRow({ row, selected, onSelectRow }: InsuranceTableRowProps) {
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
 //console.log(row)
   const handleOpenPopover = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {

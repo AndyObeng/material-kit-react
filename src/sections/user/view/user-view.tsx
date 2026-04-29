@@ -79,24 +79,28 @@ try {
 
       const  fetchmydata = async (userid,api_token) => {
    
+   //console.log(userid)
    
+axios.defaults.headers.common['Authorization'] = `Bearer ${api_token}`;
  
-       const URL = "https://api.cropestate.com/api/users/all";
+       const URL = "https://api.cropestate.com/api/user/all";
     
     
 
   //  this.setDisabled(true)
 	let payload = {};
   let header = { headers: {
-     'Authorization': `Bearer ${api_token}`,
+     'Authorization': 'Bearer ' + api_token,
     //'content-type': 'multipart/form-data'
   }
 }
-  await axios.get(URL, payload,header )
+  await axios.get(URL )
     .catch(function (error) {
       //console.log(error)
+      console.log(header)
     if (error.response) {
        // setretry(true)
+       
         setLoading(false)
       // Request made and server responded
       console.log(error.response);

@@ -17,9 +17,15 @@ export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const SignInPage = lazy(() => import('src/pages/sign-in'));
 export const CropsPage = lazy(() => import('src/pages/crops'));
+export const PaymentsPage = lazy(() => import('src/pages/payments'));
 export const CurrencyPage = lazy(() => import('src/pages/currency'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
+export const LeasePage = lazy(() => import('src/pages/leases'));
+export const InsurancePage = lazy(() => import('src/pages/insurance'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
+export const SettingsPage = lazy(() => import('src/pages/settings'));
+export const NotificationPage = lazy(() => import('src/pages/notifications'));
+export const MomoPage = lazy(() => import('src/pages/momo'));
 
 const renderFallback = () => (
   <Box
@@ -53,10 +59,15 @@ export const routesSection: RouteObject[] = [
     children: [
       { index: true, element: <DashboardPage /> },
       { path: 'user', element: <UserPage /> },
-      { path: 'products', element: <ProductsPage /> },
-      { path: 'blog', element: <BlogPage /> },
+      { path: 'payments', element: <PaymentsPage /> },
+      // { path: 'blog', element: <BlogPage /> },
       { path: 'crops', element: <CropsPage /> },
+      { path: 'leases', element: <LeasePage /> },
       { path: 'currency-exchange', element: <CurrencyPage /> },
+      { path: 'insurance', element: <InsurancePage /> },
+      { path: 'settings', element: <SettingsPage /> },
+      { path: 'notifications', element: <NotificationPage /> },
+      { path: 'momo-payments', element: <MomoPage /> },
     ],
   },
   {

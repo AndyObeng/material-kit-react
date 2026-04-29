@@ -9,7 +9,7 @@ import { visuallyHidden } from './utils';
 
 // ----------------------------------------------------------------------
 
-type CropTableHeadProps = {
+type MomoTableHeadProps = {
   orderBy: string;
   rowCount: number;
   numSelected: number;
@@ -19,7 +19,7 @@ type CropTableHeadProps = {
   onSelectAllRows: (checked: boolean) => void;
 };
 
-export function CropTableHead({
+export function MomoTableHead({
   order,
   onSort,
   orderBy,
@@ -27,7 +27,7 @@ export function CropTableHead({
   headLabel,
   numSelected,
   onSelectAllRows,
-}: CropTableHeadProps) {
+}: MomoTableHeadProps) {
   return (
     <TableHead>
       <TableRow>

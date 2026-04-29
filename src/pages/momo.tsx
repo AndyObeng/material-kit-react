@@ -1,15 +1,15 @@
 import { CONFIG } from 'src/config-global';
 
-import { SettingsView } from 'src/sections/settings/view';
+import { MomoView } from 'src/sections/momo/view';
 
 // ----------------------------------------------------------------------
 
 export default function Page() {
   return (
     <>
-      <title>{`Settings - ${CONFIG.appName}`}</title>
+      <title>{`Momo - ${CONFIG.appName}`}</title>
 
-      <SettingsView />
+      <MomoView />
     </>
   );
 }

@@ -36,7 +36,7 @@ export const navData = [
   },
   {
     title: 'Payments',
-    path: '/blog',
+    path: '/payments',
     icon: <Icon icon="streamline-freehand:cash-payment-bag-1" width="24" height="24" />,
   },
 
@@ -47,13 +47,13 @@ export const navData = [
   },
 
   {
-    title: 'Insurance',
+    title: 'Insurance policy',
     path: '/insurance',
     icon: <Icon icon="streamline-plump:insurance-hand-remix" width="24" height="24" />,
   },
  {
-    title: 'Chats',
-    path: '/chats',
+    title: 'Momo Payments',
+    path: '/momo-payments',
     icon: <Icon icon="humbleicons:chats" width="24" height="24" />,
   },
    {

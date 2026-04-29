@@ -1,15 +1,15 @@
 import { CONFIG } from 'src/config-global';
 
-import { CurrencyView } from 'src/sections/currency/view';
+import { InsuranceView } from 'src/sections/insurance/view';
 
 // ----------------------------------------------------------------------
 
 export default function Page() {
   return (
     <>
-      <title>{`Currency - ${CONFIG.appName}`}</title>
+      <title>{`Insurance - ${CONFIG.appName}`}</title>
 
-      <CurrencyView />
+      <InsuranceView />
     </>
   );
 }
